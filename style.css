@@ -24,5 +24,14 @@ body {
 .container {
     width: 30%;
     height: 80%;
-    background-color: gainsboro;
+    padding: 30px;
+    border-radius: 10px;
+    background-color: rgb(245, 245, 245);
+}
+
+.book {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 20px;
 }

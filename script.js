@@ -15,9 +15,16 @@ Book.prototype.createBook = function() {
 }
 
 const button = document.querySelector('.addBook');
+
 const bookContainer = document.querySelector('.books');
 
 const inputForm = document.querySelector('.user-input');
+
+const form = inputForm.querySelectorAll('.user-form');
+
+const submit = form[0].querySelector('button[type="submit"]');
+
+const bookTitle = document.querySelector('#title');
 
 function addBookToLibrary() {
 
@@ -48,7 +55,7 @@ function addBookToLibrary() {
         rightInfo.appendChild(read);
 
         title.textContent = `${elem.title}`;
-        author.textContent = `${elem.author}`;
+        author.textContent = `By ${elem.author}`;
         pages.textContent = `${elem.pages} Pages`;
 
 
@@ -62,3 +69,24 @@ function addBookToLibrary() {
 button.addEventListener('click', () => {
     inputForm.classList.add('user-input-click');
 });
+
+function getUserData(e) {
+    inputForm.classList.remove('user-input-click');
+    myLibrary = [];
+
+    e.preventDefault();
+
+    let title = document.querySelector('#title').value;
+    let author = document.querySelector('#author').value;
+    let pages = document.querySelector('#pages').value;
+
+    const newBook = new Book(title,author,pages);
+
+    myLibrary.push(newBook);
+
+    addBookToLibrary();
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    submit.addEventListener('click', getUserData);
+}, false);

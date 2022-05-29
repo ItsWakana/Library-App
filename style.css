@@ -42,9 +42,14 @@ body {
 
 .user-input {
     position: fixed;
+    visibility: hidden;
     width: 40%;
     height: 50%;
     background-color: rgb(245, 245, 245);
     border-radius: 20px;
     border: solid 4px rgb(212, 224, 224);
+}
+
+.user-input-click {
+    visibility: visible;
 }

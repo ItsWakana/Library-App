@@ -17,6 +17,8 @@ Book.prototype.createBook = function() {
 const button = document.querySelector('.addBook');
 const bookContainer = document.querySelector('.books');
 
+const inputForm = document.querySelector('.user-input');
+
 function addBookToLibrary() {
 
     myLibrary.forEach((elem) => {
@@ -53,6 +55,10 @@ function addBookToLibrary() {
     });
 }
 
+// button.addEventListener('click', () => {
+//     theHobbit.createBook();
+// });
+
 button.addEventListener('click', () => {
-    theHobbit.createBook();
+    inputForm.classList.add('user-input-click');
 });

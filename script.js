@@ -53,4 +53,6 @@ function addBookToLibrary() {
     });
 }
 
-button.addEventListener('click', addBookToLibrary);
+button.addEventListener('click', () => {
+    theHobbit.createBook();
+});

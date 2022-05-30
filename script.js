@@ -3,10 +3,11 @@ const theHobbit = new Book('The Hobbit', 'J.R.R Tolkien', 310);
 
 let myLibrary = [theHobbit];
 
-function Book(title,author,pages) {
+function Book(title,author,pages,read) {
     this.title = title;
     this.author = author;
     this.pages = pages;
+    this.read = read;
 }
 
 Book.prototype.createBook = function() {
@@ -59,6 +60,7 @@ function addBookToLibrary(newBook) {
         title.textContent = `${newBook.title}`;
         author.textContent = `By ${newBook.author}`;
         pages.textContent = `${newBook.pages} Pages`;
+        read.textContent = `${newBook.read}`;
 
 }
 
@@ -70,8 +72,16 @@ function getUserData(e) {
     let title = document.querySelector('#title').value;
     let author = document.querySelector('#author').value;
     let pages = document.querySelector('#pages').value;
+    let read = document.querySelector('input[name=read]:checked').value;
 
-    const newBook = new Book(title,author,pages);
+    if (read == 'yes') {
+        read = 'You have read this book'
+    } else {
+        read = 'You have not read this book yet'
+    }
+
+
+    const newBook = new Book(title,author,pages,read);
 
     myLibrary.push(newBook);
     console.log(myLibrary)

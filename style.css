@@ -1,6 +1,7 @@
 *,
 *::before,
 *::after {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
@@ -20,10 +21,12 @@ body {
     background-color: var(--background-clr);
     min-width: 1000px;
     height: 100vh;
+    background-color: white;
 }
 
 .container {
     width: 30%;
+    max-width: 500px;
     height: 80%;
     padding: 30px;
     border-radius: 10px;
@@ -45,13 +48,16 @@ body {
     position: fixed;
     top: 30%;
     visibility: hidden;
-    transform: scale(0.1);
-    width: 40%;
+    transform: scale(0);
+    width: 30%;
+    min-width: 350px;
     height: 50%;
     background-color: rgb(245, 245, 245);
     border-radius: 20px;
     border: solid 4px rgb(201, 231, 231);
-    transition: transform 0.2s ease-in;
+    transition: 0.2s ease-in;
+    z-index: 10;
+
 }
 
 .user-form {
@@ -70,7 +76,43 @@ body {
     flex-direction: column;
 }
 
-.user-input-click {
+.form-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid black;
+}
+
+.form-header button.close-button {
+    font-size: 2rem;
+    font-weight: bold;
+    outline: none;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+.user-input.active {
     visibility: visible;
     transform: scale(1);
+}
+
+#overlay {
+    position: fixed;
+    opacity: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0, .5);
+    pointer-events: none;
+}
+
+#overlay.active {
+    opacity: 1;
+    pointer-events: all;
 }

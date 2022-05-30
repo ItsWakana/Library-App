@@ -1,5 +1,4 @@
 const theHobbit = new Book('The Hobbit', 'J.R.R Tolkien', 310);
-const fellowship = new Book('The Fellowship of the Ring', 'J.R.R Tolkien', 423);
 
 
 let myLibrary = [theHobbit];
@@ -14,7 +13,11 @@ Book.prototype.createBook = function() {
     console.log(this);
 }
 
-const button = document.querySelector('.addBook');
+const openModalButtons = document.querySelectorAll('[data-modal-target]');
+
+const closeModalButtons = document.querySelectorAll('[data-close-button]');
+
+const overlay = document.getElementById('overlay');
 
 const bookContainer = document.querySelector('.books');
 
@@ -26,9 +29,8 @@ const submit = form[0].querySelector('button[type="submit"]');
 
 const bookTitle = document.querySelector('#title');
 
-function addBookToLibrary() {
+function addBookToLibrary(newBook) {
 
-    myLibrary.forEach((elem) => {
         let book = document.createElement('div');
         book.classList = 'book';
         bookContainer.appendChild(book);
@@ -54,25 +56,14 @@ function addBookToLibrary() {
         rightInfo.appendChild(pages);
         rightInfo.appendChild(read);
 
-        title.textContent = `${elem.title}`;
-        author.textContent = `By ${elem.author}`;
-        pages.textContent = `${elem.pages} Pages`;
+        title.textContent = `${newBook.title}`;
+        author.textContent = `By ${newBook.author}`;
+        pages.textContent = `${newBook.pages} Pages`;
 
-
-    });
 }
 
-// button.addEventListener('click', () => {
-//     theHobbit.createBook();
-// });
-
-button.addEventListener('click', () => {
-    inputForm.classList.add('user-input-click');
-});
-
 function getUserData(e) {
-    inputForm.classList.remove('user-input-click');
-    myLibrary = [];
+    inputForm.classList.remove('active');
 
     e.preventDefault();
 
@@ -83,10 +74,39 @@ function getUserData(e) {
     const newBook = new Book(title,author,pages);
 
     myLibrary.push(newBook);
+    console.log(myLibrary)
 
-    addBookToLibrary();
+    addBookToLibrary(newBook);
+
+    closeModal(modal);
 }
 
 document.addEventListener('DOMContentLoaded', () => {
     submit.addEventListener('click', getUserData);
 }, false);
+
+openModalButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        const modal = document.querySelector(button.dataset.modalTarget)
+        openModal(modal);
+    })
+})
+
+closeModalButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        const modal = document.querySelector('.user-input')
+        closeModal(modal);
+    })
+})
+
+function openModal(modal) {
+    if (modal == null) return
+    modal.classList.add('active');
+    overlay.classList.add('active');
+}
+
+function closeModal(modal) {
+    if (modal == null) return
+    modal.classList.remove('active');
+    overlay.classList.remove('active');
+}

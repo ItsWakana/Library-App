@@ -7,17 +7,17 @@
 }
 
 :root {
-    --background-clr: #242127;
+    --background-clr: #020f1b;
     --book-back-clr: #060607;
-    --book-border-font-clr: #c34a36;
-    --book-heading-clr: #c34a36;
+    --book-border-font-clr: #f8f4f4;
+    --book-heading-clr: #84c3fd;
     --main-font-size: 15px;
 
     --button-font-size: 1.1rem;
 }
 
 h1.title {
-    font-size: 2rem;
+    font-size: 1.5rem;
     color: var(--book-heading-clr);
 }
 
@@ -72,6 +72,30 @@ body {
 
 .addBook:hover {
     transform: scale(1.04);
+}
+
+.remove-button {
+    background: none;
+    color: var(--book-border-font-clr);
+    border: none;
+    font-size: 1.06rem;
+    font-weight: bold;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.remove-button::after {
+    display: block;
+    position: relative;
+    content: '';
+    width: 0%;
+    height: 3px;
+    background-color: var(--book-heading-clr);
+    transition: width 200ms ease-in-out;
+}
+
+.remove-button:hover::after {
+    width: 100%;
 }
 
 .user-input {

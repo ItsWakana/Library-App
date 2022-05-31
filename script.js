@@ -69,7 +69,7 @@ function createDOMElements() {
     let readHead = document.createElement('p');
     readHead.classList = 'read';
     let removeButton = document.createElement('button');
-    removeButton.classList = 'removeButton';
+    removeButton.classList = 'remove-button';
     removeButton.textContent = 'Remove';
     rightInfo.append(pagesHead, readHead, removeButton);
 

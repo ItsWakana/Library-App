@@ -52,18 +52,16 @@ function createDOMElements() {
     fullBook.classList = 'book';
     bookContainer.append(fullBook);
 
-    let leftInfo = document.createElement('div');
-    leftInfo.classList = 'left';
-    let rightInfo = document.createElement('div');
-    rightInfo.classList = 'right';
-    fullBook.append(leftInfo, rightInfo);
+    // let leftInfo = document.createElement('div');
+    // leftInfo.classList = 'left';
+    // let rightInfo = document.createElement('div');
+    // rightInfo.classList = 'right';
+    // fullBook.append(leftInfo, rightInfo);
 
     let titleHead = document.createElement('h1');
     titleHead.classList = 'title';
     let authorHead = document.createElement('p');
     authorHead.classList = 'author';
-    leftInfo.append(titleHead, authorHead);
-
     let pagesHead = document.createElement('p');
     pagesHead.classList = 'pages';
     let readHead = document.createElement('p');
@@ -71,7 +69,7 @@ function createDOMElements() {
     let removeButton = document.createElement('button');
     removeButton.classList = 'remove-button';
     removeButton.textContent = 'Remove';
-    rightInfo.append(pagesHead, readHead, removeButton);
+    fullBook.append(titleHead, authorHead,pagesHead,readHead,removeButton);
 
     let domElements = [titleHead,authorHead,pagesHead,readHead,removeButton];
 
@@ -92,7 +90,10 @@ function createDOMElements() {
 
     removeButton.addEventListener('click', (e) => {
         const index = e.target.dataset.index;
-        removeBookAndArrayElement(index, fullBook)
+        fullBook.classList.add('fadeout');
+        fullBook.addEventListener('transitionend', () => {
+            removeBookAndArrayElement(index, fullBook);
+        });
     }); 
 
 }

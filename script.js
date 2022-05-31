@@ -1,14 +1,13 @@
-const theHobbit = new Book('The Hobbit', 'J.R.R Tolkien', 310);
+const theHobbit = new Book('The Hobbit', 'J.R.R Tolkien', 310, 'Unread');
 
 
-let myLibrary = [];
+let myLibrary = [theHobbit];
 
 function Book(title,author,pages,read) {
     this.title = title;
     this.author = author;
     this.pages = pages;
     this.read = read;
-    this.number = 0;
 }
 
 const openModalButtons = document.querySelectorAll('[data-modal-target]');
@@ -34,60 +33,89 @@ function addBookToLibrary(e) {
 
     myLibrary.push(newBook);
 
-    function createDOMElements() {
-        //creating all the dom elements that our content will go in
-        let fullBook = document.createElement('div');
-        fullBook.classList = 'book';
-        bookContainer.append(fullBook);
-  
-        let leftInfo = document.createElement('div');
-        leftInfo.classList = 'left';
-        let rightInfo = document.createElement('div');
-        rightInfo.classList = 'right';
-        fullBook.append(leftInfo, rightInfo);
-
-        let titleHead = document.createElement('h1');
-        titleHead.classList = 'title';
-        let authorHead = document.createElement('p');
-        authorHead.classList = 'author';
-        leftInfo.append(titleHead, authorHead);
-
-        let pagesHead = document.createElement('p');
-        pagesHead.classList = 'pages';
-        let readHead = document.createElement('p');
-        readHead.classList = 'read';
-        let removeButton = document.createElement('button');
-        removeButton.classList = 'removeButton';
-        removeButton.textContent = 'Remove';
-        rightInfo.append(pagesHead, readHead, removeButton);
-
-        let domElements = [titleHead,authorHead,pagesHead,readHead,removeButton];
-
-        //removes the DOM element for a specific book
-            
-
-        myLibrary.forEach((book, index) => {
-            //looping over the library objects and getting the index for dom elements
-            
-            setDataIndex(domElements, index);
-
-            //looping over each object and putting the correct object text in
-            titleHead.textContent = `${book.title}`;
-            authorHead.textContent = `By ${book.author}`;
-            pagesHead.textContent = `${book.pages} Pages`;
-            readHead.textContent = `Book status: ${book.read}`;
-          }); 
-
-          removeButton.addEventListener('click', () => {
-            removeBookDomElements(fullBook);
-            removeBookFromArray(newBook);
-            console.log(myLibrary);
-        }); 
-
-    }
-
     createDOMElements();
     closeModal(modal);
+}
+
+function arrayDisplayLoop() {
+    
+    myLibrary.forEach(book => {
+        createDOMElements();
+    });
+}
+
+arrayDisplayLoop();
+
+function createDOMElements() {
+    //creating all the dom elements that our content will go in
+    let fullBook = document.createElement('div');
+    fullBook.classList = 'book';
+    bookContainer.append(fullBook);
+
+    let leftInfo = document.createElement('div');
+    leftInfo.classList = 'left';
+    let rightInfo = document.createElement('div');
+    rightInfo.classList = 'right';
+    fullBook.append(leftInfo, rightInfo);
+
+    let titleHead = document.createElement('h1');
+    titleHead.classList = 'title';
+    let authorHead = document.createElement('p');
+    authorHead.classList = 'author';
+    leftInfo.append(titleHead, authorHead);
+
+    let pagesHead = document.createElement('p');
+    pagesHead.classList = 'pages';
+    let readHead = document.createElement('p');
+    readHead.classList = 'read';
+    let removeButton = document.createElement('button');
+    removeButton.classList = 'removeButton';
+    removeButton.textContent = 'Remove';
+    rightInfo.append(pagesHead, readHead, removeButton);
+
+    let domElements = [titleHead,authorHead,pagesHead,readHead,removeButton];
+
+    //removes the DOM element for a specific book
+        
+
+    myLibrary.forEach((book, index) => {
+        //looping over the library objects and getting the index for dom elements
+        
+        setDataIndex(domElements, index);
+
+        //looping over each object and putting the correct object text in
+        titleHead.textContent = `${book.title}`;
+        authorHead.textContent = `By ${book.author}`;
+        pagesHead.textContent = `${book.pages} Pages`;
+        readHead.textContent = `Book status: ${book.read}`;
+    }); 
+
+    removeButton.addEventListener('click', (e) => {
+        const index = e.target.dataset.index;
+        removeBookAndArrayElement(index, fullBook)
+    }); 
+
+}
+
+function removeBookAndArrayElement(arrayBook, domBook) {
+    myLibrary.splice(arrayBook,1);
+    domBook.remove();
+}
+
+function setDataIndex(elements, index) {
+    elements.forEach(element => element.dataset.index = index);
+}
+
+function openModal(modal) {
+    if (modal == null) return
+    modal.classList.add('active');
+    overlay.classList.add('active');
+}
+
+function closeModal(modal) {
+    if (modal == null) return
+    modal.classList.remove('active');
+    overlay.classList.remove('active');
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -113,27 +141,3 @@ overlay.addEventListener('click', () => {
     closeModal(modal);
 })
 
-function removeBookFromArray(book) {
-    myLibrary.push(myLibrary.splice(myLibrary.indexOf(book), 1)[0]);
-    myLibrary.pop();
-}
-
-function removeBookDomElements(book) {
-    book.remove();
-}
-
-function setDataIndex(elements, index) {
-    elements.forEach(element => element.dataset.index = index);
-}
-
-function openModal(modal) {
-    if (modal == null) return
-    modal.classList.add('active');
-    overlay.classList.add('active');
-}
-
-function closeModal(modal) {
-    if (modal == null) return
-    modal.classList.remove('active');
-    overlay.classList.remove('active');
-}

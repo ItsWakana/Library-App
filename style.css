@@ -7,12 +7,18 @@
 }
 
 :root {
-    --background-clr: black;
+    --background-clr: #242127;
+    --book-back-clr: #060607;
+    --book-border-font-clr: #c34a36;
+    --book-heading-clr: #c34a36;
     --main-font-size: 15px;
+
+    --button-font-size: 1.1rem;
 }
 
-h1 {
-    font-size: 1.3rem;
+h1.title {
+    font-size: 2rem;
+    color: var(--book-heading-clr);
 }
 
 body {
@@ -34,7 +40,7 @@ body {
     height: 80%;
     padding: 30px;
     border-radius: 10px;
-    background-color: rgb(245, 245, 245);
+    background-color: var(--background-clr);
     overflow: scroll;
 }
 
@@ -42,10 +48,30 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    color: var(--book-border-font-clr);
+    border: solid 4px var(--book-border-font-clr);
     border-radius: 10px;
     padding: 20px;
     margin-bottom: 20px;
-    background-color: rgb(201, 231, 231);
+    background-color: var(--book-back-clr);
+    box-shadow: 2px 5px 21px 3px rgba(0,0,0,0.53);
+    transition: transform 250ms;
+}
+
+.addBook {
+    margin-bottom: 25px;
+    width: 50%;
+    font-size: var(--button-font-size);
+    font-weight: bold;
+    background-color: var(--book-back-clr);
+    border: solid 2px var(--book-border-font-clr);
+    color: var(--book-border-font-clr);
+    border-radius: 8px;
+    transition: transform 200ms;
+}
+
+.addBook:hover {
+    transform: scale(1.04);
 }
 
 .user-input {

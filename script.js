@@ -33,11 +33,66 @@ function addBookToLibrary(e) {
     const newBook = new Book(title,author,pages,read);
 
     myLibrary.push(newBook);
-    
+
+    function createDOMElements() {
+        //creating all the dom elements that our content will go in
+        let fullBook = document.createElement('div');
+        fullBook.classList = 'book';
+        bookContainer.append(fullBook);
+  
+        let leftInfo = document.createElement('div');
+        leftInfo.classList = 'left';
+        let rightInfo = document.createElement('div');
+        rightInfo.classList = 'right';
+        fullBook.append(leftInfo, rightInfo);
+
+        let titleHead = document.createElement('h1');
+        titleHead.classList = 'title';
+        let authorHead = document.createElement('p');
+        authorHead.classList = 'author';
+        leftInfo.append(titleHead, authorHead);
+
+        let pagesHead = document.createElement('p');
+        pagesHead.classList = 'pages';
+        let readHead = document.createElement('p');
+        readHead.classList = 'read';
+        let removeButton = document.createElement('button');
+        removeButton.classList = 'removeButton';
+        rightInfo.append(pagesHead, readHead, removeButton);
+
+        myLibrary.forEach((book, index) => {
+            //looping over the library objects and getting the index for dom elements
+            titleHead.dataset.index = index;
+            authorHead.dataset.index = index;
+            pagesHead.dataset.index = index;
+            readHead.dataset.index = index;
+            removeButton.dataset.index = index;
+
+            //looping over each object and putting the correct object text in
+            titleHead.textContent = `${book.title}`;
+            authorHead.textContent = `By ${book.author}`;
+            pagesHead.textContent = `${book.pages} Pages`;
+            readHead.textContent = `Book status: ${book.read}`;
+            removeButton.textContent = 'Remove';
+
+            removeButton.addEventListener('click', () => {
+              fullBook.remove();
+              
+              
+              console.log(myLibrary);
+              
+            });
+          });
+        
+        
+        }
+
+      createDOMElements();
+      closeModal(modal);
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    submit.addEventListener('click', getUserData);
+    submit.addEventListener('click', addBookToLibrary);
 }, false);
 
 openModalButtons.forEach(button => {

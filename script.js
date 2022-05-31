@@ -108,9 +108,13 @@ closeModalButtons.forEach(button => {
     })
 })
 
+overlay.addEventListener('click', () => {
+    const modal = document.querySelector('.user-input');
+    closeModal(modal);
+})
+
 function setDataIndex(elements, index) {
     elements.forEach(element => element.dataset.index = index);
-    console.log(elements);
 }
 
 function openModal(modal) {

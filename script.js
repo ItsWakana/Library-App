@@ -64,9 +64,7 @@ function addBookToLibrary(e) {
         let domElements = [titleHead,authorHead,pagesHead,readHead,removeButton];
 
         //removes the DOM element for a specific book
-        function removeBookDomElements(index) {
-            fullBook.remove();
-        }
+            
 
         myLibrary.forEach((book, index) => {
             //looping over the library objects and getting the index for dom elements
@@ -78,16 +76,18 @@ function addBookToLibrary(e) {
             authorHead.textContent = `By ${book.author}`;
             pagesHead.textContent = `${book.pages} Pages`;
             readHead.textContent = `Book status: ${book.read}`;
+          }); 
 
-            removeButton.addEventListener('click', removeBookDomElements);
-          });
-        
-          
-        
-        }
+          removeButton.addEventListener('click', () => {
+            removeBookDomElements(fullBook);
+            removeBookFromArray(newBook);
+            console.log(myLibrary);
+        }); 
 
-      createDOMElements();
-      closeModal(modal);
+    }
+
+    createDOMElements();
+    closeModal(modal);
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -112,6 +112,15 @@ overlay.addEventListener('click', () => {
     const modal = document.querySelector('.user-input');
     closeModal(modal);
 })
+
+function removeBookFromArray(book) {
+    myLibrary.push(myLibrary.splice(myLibrary.indexOf(book), 1)[0]);
+    myLibrary.pop();
+}
+
+function removeBookDomElements(book) {
+    book.remove();
+}
 
 function setDataIndex(elements, index) {
     elements.forEach(element => element.dataset.index = index);

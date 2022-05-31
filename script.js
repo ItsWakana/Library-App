@@ -58,32 +58,31 @@ function addBookToLibrary(e) {
         readHead.classList = 'read';
         let removeButton = document.createElement('button');
         removeButton.classList = 'removeButton';
+        removeButton.textContent = 'Remove';
         rightInfo.append(pagesHead, readHead, removeButton);
+
+        let domElements = [titleHead,authorHead,pagesHead,readHead,removeButton];
+
+        //removes the DOM element for a specific book
+        function removeBookDomElements(index) {
+            fullBook.remove();
+        }
 
         myLibrary.forEach((book, index) => {
             //looping over the library objects and getting the index for dom elements
-            titleHead.dataset.index = index;
-            authorHead.dataset.index = index;
-            pagesHead.dataset.index = index;
-            readHead.dataset.index = index;
-            removeButton.dataset.index = index;
+            
+            setDataIndex(domElements, index);
 
             //looping over each object and putting the correct object text in
             titleHead.textContent = `${book.title}`;
             authorHead.textContent = `By ${book.author}`;
             pagesHead.textContent = `${book.pages} Pages`;
             readHead.textContent = `Book status: ${book.read}`;
-            removeButton.textContent = 'Remove';
 
-            removeButton.addEventListener('click', () => {
-              fullBook.remove();
-              
-              
-              console.log(myLibrary);
-              
-            });
+            removeButton.addEventListener('click', removeBookDomElements);
           });
         
+          
         
         }
 
@@ -108,6 +107,11 @@ closeModalButtons.forEach(button => {
         closeModal(modal);
     })
 })
+
+function setDataIndex(elements, index) {
+    elements.forEach(element => element.dataset.index = index);
+    console.log(elements);
+}
 
 function openModal(modal) {
     if (modal == null) return

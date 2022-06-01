@@ -46,7 +46,8 @@ body {
     width: 40%;
     min-width: 300px;
     max-width: 500px;
-    height: 80%;
+    min-height: 50%;
+    max-height: 70%;
     padding: 30px;
     border-radius: 10px;
     border: solid 2px var(--book-border-font-clr);

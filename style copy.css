@@ -7,15 +7,16 @@
 }
 
 :root {
-    --background-clr: #18181d;
-    --book-back-clr: #060607;
-    --book-border-font-clr: #845ec2;
-    --book-heading-clr: #00c0a3;
+    --background-clr: #f2643d;
+    --book-back-clr: #ffffff;
+    --book-border-font-clr: #000000;
+    --book-heading-clr: #f2643d;
     --main-font-size: 15px;
 
-    --button-font-size: 0.9rem;
+    --button-font-size: 1rem;
 
-    --input-bg-clr: #18181d;
+    --input-bg-clr: white;
+    font-size: var(--main-font-size);
 }
 
 h1.title {
@@ -30,14 +31,12 @@ h1.form-title {
 }
 
 body {
-    scrollbar-color: var(--input-bg-clr);
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
-    font-size: var(--main-font-size);
     font-family: Arial, Helvetica, sans-serif;
-    background-color: rgb(40, 40, 46);
+    background-color: #f2643d;
     width: 100vw;
     height: 100vh;
 }
@@ -50,8 +49,8 @@ body {
     max-height: 70%;
     padding: 30px;
     border-radius: 10px;
-    border: solid 2px var(--book-border-font-clr);
-    background-color: var(--background-clr);
+    border: solid 4px var(--book-border-font-clr);
+    background-color: var(--book-back-clr);
     overflow:scroll;
 }
 
@@ -65,7 +64,7 @@ body {
     padding: 20px;
     margin-bottom: 20px;
     background-color: var(--book-back-clr);
-    box-shadow: 2px 5px 21px 3px rgba(0,0,0,0.65);
+    box-shadow: 5px 5px 0px 1px black;
     transition: opacity 1.2s;
 }
 
@@ -79,27 +78,36 @@ body {
     min-width: 100px;
     font-size: var(--button-font-size);
     font-weight: 600;
-    background-color: var(--book-back-clr);
-    border: solid 2px var(--book-border-font-clr);
-    color: var(--book-border-font-clr);
-    border-radius: 8px;
+    background-color: var(--background-clr);
+    border: solid 3px var(--book-border-font-clr);
+    color: white;
+    border-radius: 10px;
     transition: transform 200ms;
     text-align: center;
     padding: 7px 0 7px;
     cursor: pointer;
+    box-shadow: 2px 2px 0px 1px black;
+
+}
+
+.addBook {
+    margin-left: 20px;
 }
 
 
 
-.addBook:hover,
+/* .addBook:hover,
 .book-submit:hover {
     transform: scale(1.04);
-}
+} */
 
 .remove-button {
-    background: none;
-    color: var(--book-heading-clr);
-    border: 2px solid var(--book-heading-clr);
+    background-color: var(--background-clr);
+    color: var(--book-back-clr);
+    /* border: 2px solid var(--book-heading-clr); */
+    border: 3px solid var(--book-border-font-clr);
+    box-shadow: 2px 2px 0px 1px black;
+    border-radius: 10px;
     padding: 3px 15px 3px;
     font-size: 1rem;
     font-weight: bold;
@@ -108,16 +116,17 @@ body {
     transition: transform 250ms;
 }
 
-.remove-button:hover {
+/* .remove-button:hover {
     transform: scale(1.09);
-}
+} */
 
 .user-input {
     position: fixed;
     top: 30%;
     visibility: hidden;
     transform: scale(0);
-    width: 30%;
+    /* width: 30%; */
+    width: 20%;
     min-width: 260px;
     height: 50%;
     background-color: var(--input-bg-clr);
@@ -133,7 +142,7 @@ body {
 .author,
 .pages,
 .read {
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     line-height: 1.3;
     font-weight: bold;
 
@@ -163,14 +172,14 @@ label,
 .user-form div p:first-child  {
     margin-bottom: 5px;
 }
-
 input {
-    border-radius: 7px;
-    border: none;
+    border-radius: 5px;
+    border: solid 2px var(--book-border-font-clr);
     padding-left:7px
 }
 input[data-id-text]:focus {
-    outline: 3px solid var(--book-heading-clr);
+    /* outline: 3px solid var(--book-heading-clr); */
+    outline: none;
 }
 
 .user-form {
@@ -187,6 +196,10 @@ input[data-id-text]:focus {
 .user-form > div:nth-child(3) {
     display: flex;
     flex-direction: column;
+}
+
+.user-form .label-headings {
+    font-weight: bold;
 }
 
 .form-header {

@@ -137,6 +137,10 @@ body {
 
 }
 
+.read {
+    cursor: pointer;
+}
+
 label,
 .user-form div p:first-child  {
     margin-bottom: 5px;

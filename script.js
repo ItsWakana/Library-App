@@ -1,13 +1,19 @@
-const theHobbit = new Book('The Hobbit', 'J.R.R Tolkien', 310, 'Unread');
 
-
-let myLibrary = [theHobbit];
+let myLibrary = [];
 
 function Book(title,author,pages,read) {
     this.title = title;
     this.author = author;
     this.pages = pages;
     this.read = read;
+}
+
+Book.prototype.readStatus = function() {
+    if (this.read == 'Read') {
+        this.read = 'Unread'
+    } else {
+        this.read = 'Read'
+    }
 }
 
 const openModalButtons = document.querySelectorAll('[data-modal-target]');
@@ -36,15 +42,6 @@ function addBookToLibrary(e) {
     createDOMElements();
     closeModal(modal);
 }
-
-function arrayDisplayLoop() {
-    
-    myLibrary.forEach(book => {
-        createDOMElements();
-    });
-}
-
-arrayDisplayLoop();
 
 function createDOMElements() {
     //creating all the dom elements that our content will go in
@@ -80,6 +77,11 @@ function createDOMElements() {
         authorHead.textContent = `Author: ${book.author}`;
         pagesHead.textContent = `Pages: ${book.pages}`;
         readHead.textContent = `Book status: ${book.read}`;
+
+        readHead.addEventListener('click', () => {
+            book.readStatus();
+            readHead.textContent = `Book status: ${book.read}`; 
+        });
     }); 
 
     removeButton.addEventListener('click', (e) => {

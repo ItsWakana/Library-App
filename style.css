@@ -51,7 +51,7 @@ body {
     border-radius: 10px;
     border: solid 2px var(--book-border-font-clr);
     background-color: var(--background-clr);
-    overflow: scroll;
+    overflow: hidden;
 }
 
 .book {

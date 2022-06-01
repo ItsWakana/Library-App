@@ -140,6 +140,22 @@ body {
 
 .read {
     cursor: pointer;
+    position: relative;
+}
+
+.read::after {
+    position: absolute;
+    top: 17px;
+    left: 0;
+    content: '';
+    width: 0;
+    height: 3px;
+    background-color: var(--book-heading-clr);
+    transition: width 250ms ease-in-out;
+}
+
+.read:hover::after {
+    width: 100%;
 }
 
 label,

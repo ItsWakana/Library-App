@@ -206,6 +206,17 @@ input[data-id-text]:focus {
     outline: none;
 }
 
+input[data-id-text] {
+    width: 50%;
+    max-width: 300px;
+    transition: 250ms;
+}
+
+input[data-id-text]:focus {
+    width: 75%;
+    max-width: 300px;
+}
+
 .user-form {
     display: flex;
     flex-direction: column;

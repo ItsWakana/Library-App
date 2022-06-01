@@ -12,7 +12,7 @@
     <div class="container">
         <div class="books">
             
-            <button data-modal-target="#modal" class="addBook">ADD A BOOK</button>
+            <button data-modal-target="#modal" class="addBook">Add a book</button>
         </div>
     </div>
     <div class="user-input" id="modal" class="modal">
@@ -23,24 +23,24 @@
         <form action="" class="user-form">
             <div>
                 <label for="title">Title</label>
-                <input type="text" name="title" id="title" value="The Hobbit" required>
+                <input data-id-text type="text" name="title" id="title" value="The Hobbit" required>
             </div>
             <div>
                 <label for="author">Author</label>
-                <input type="text" name="author" id="author" value="J.R.R Tolkien" required>
+                <input data-id-text type="text" name="author" id="author" value="J.R.R Tolkien" required>
             </div>
             <div>
                 <label for="pages">No. of Pages</label>
-                <input type="text" name="pages" id="pages" value="310" required>
+                <input data-id-text type="text" name="pages" id="pages" value="310" required>
             </div>
             <div>
                 <p>Have you read this?</p>
                 <input type="radio" name="read" id="yes" value="yes">
-                <label for="read">Yes</label>
+                <label data-label for="read">Yes</label>
                 <input type="radio" name="read" id="no" value="no">
-                <label for="read">No</label>
+                <label data-label for="read">No</label>
             </div>
-            <button type="submit" class="book-submit">Show Me!</button>
+            <button type="submit" class="book-submit">Add it</button>
         </form>
     </div>
     <div id="overlay"></div>

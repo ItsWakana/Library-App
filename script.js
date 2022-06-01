@@ -52,12 +52,6 @@ function createDOMElements() {
     fullBook.classList = 'book';
     bookContainer.append(fullBook);
 
-    // let leftInfo = document.createElement('div');
-    // leftInfo.classList = 'left';
-    // let rightInfo = document.createElement('div');
-    // rightInfo.classList = 'right';
-    // fullBook.append(leftInfo, rightInfo);
-
     let titleHead = document.createElement('h1');
     titleHead.classList = 'title';
     let authorHead = document.createElement('p');
@@ -83,8 +77,8 @@ function createDOMElements() {
 
         //looping over each object and putting the correct object text in
         titleHead.textContent = `${book.title}`;
-        authorHead.textContent = `By ${book.author}`;
-        pagesHead.textContent = `${book.pages} Pages`;
+        authorHead.textContent = `Author: ${book.author}`;
+        pagesHead.textContent = `Pages: ${book.pages}`;
         readHead.textContent = `Book status: ${book.read}`;
     }); 
 

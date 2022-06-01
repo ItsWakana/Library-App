@@ -115,6 +115,18 @@ function closeModal(modal) {
     overlay.classList.remove('active');
 }
 
+function setTheme() {
+
+    const root = document.documentElement;
+    root.classList.toggle('dark')
+
+    if (root.classList == 'dark') {
+        button.textContent = 'Light Mode';
+    } else {
+        button.textContent = 'Dark Mode';
+    }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     submit.addEventListener('click', addBookToLibrary);
 }, false);
@@ -137,4 +149,10 @@ overlay.addEventListener('click', () => {
     const modal = document.querySelector('.user-input');
     closeModal(modal);
 })
+
+const button = document.querySelector('.select-theme');
+
+button.addEventListener('click', setTheme);
+
+
 

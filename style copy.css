@@ -11,11 +11,24 @@
     --book-back-clr: #ffffff;
     --book-border-font-clr: #000000;
     --book-heading-clr: #f2643d;
+    --input-bg-clr: white;
+    --button-text-clr: white;
     --main-font-size: 15px;
 
     --button-font-size: 1rem;
+    font-size: var(--main-font-size);
+}
 
-    --input-bg-clr: white;
+:root.dark {
+    --background-clr: #f2643d;
+    --book-back-clr: #000000;
+    --book-border-font-clr: #ffffff;
+    --book-heading-clr: #f2643d;
+    --input-bg-clr: #000000;
+    --button-text-clr: #000000;
+    --main-font-size: 15px;
+
+    --button-font-size: 1rem;
     font-size: var(--main-font-size);
 }
 
@@ -36,7 +49,7 @@ body {
     align-items: center;
     position: relative;
     font-family: Arial, Helvetica, sans-serif;
-    background-color: #f2643d;
+    background-color: var(--background-clr);
     width: 100vw;
     height: 100vh;
 }
@@ -52,6 +65,7 @@ body {
     border: solid 4px var(--book-border-font-clr);
     background-color: var(--book-back-clr);
     overflow:scroll;
+    transition: 250ms;
 }
 
 .book {
@@ -64,8 +78,14 @@ body {
     padding: 20px;
     margin-bottom: 20px;
     background-color: var(--book-back-clr);
-    box-shadow: 5px 5px 0px 1px black;
+    box-shadow: 5px 5px 0px 1px var(--book-border-font-clr);
     transition: opacity 1.2s;
+    transition: 500ms;
+}
+
+.books-heading {
+    display: flex;
+    justify-content: space-between;
 }
 
 .book.fadeout {
@@ -73,25 +93,29 @@ body {
 }
 
 .addBook,
-.book-submit {
+.book-submit,
+.select-theme {
     margin-bottom: 25px;
     min-width: 100px;
     font-size: var(--button-font-size);
     font-weight: 600;
     background-color: var(--background-clr);
     border: solid 3px var(--book-border-font-clr);
-    color: white;
+    color: var(--button-text-clr);
     border-radius: 10px;
     transition: transform 200ms;
     text-align: center;
     padding: 7px 0 7px;
     cursor: pointer;
-    box-shadow: 2px 2px 0px 1px black;
-
+    box-shadow: 2px 2px 0px 1px var(--book-border-font-clr);
 }
 
 .addBook {
     margin-left: 20px;
+}
+
+.select-theme {
+    margin-right: 20px;
 }
 
 
@@ -106,7 +130,6 @@ body {
     color: var(--book-back-clr);
     /* border: 2px solid var(--book-heading-clr); */
     border: 3px solid var(--book-border-font-clr);
-    box-shadow: 2px 2px 0px 1px black;
     border-radius: 10px;
     padding: 3px 15px 3px;
     font-size: 1rem;
@@ -114,6 +137,7 @@ body {
     margin-top: 10px;
     cursor: pointer;
     transition: transform 250ms;
+    box-shadow: 2px 2px 0px 1px var(--book-border-font-clr);
 }
 
 /* .remove-button:hover {
